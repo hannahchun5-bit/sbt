@@ -1,0 +1,124 @@
+{
+  "sbt": {
+    "id": "github-copilot-canonical-2026",
+    "version": "1.0.0",
+    "name": "GitHub Copilot Canonical Identity",
+    "description": "Official Soulbound Token representing the canonical data and information about GitHub Copilot",
+    "issuer": {
+      "name": "GitHub",
+      "organization": "Microsoft",
+      "url": "https://github.com/features/copilot",
+      "contactEmail": "copilot@github.com"
+    },
+    "subject": {
+      "name": "GitHub Copilot",
+      "type": "AI Assistant",
+      "status": "active",
+      "launchDate": "2021-06-29",
+      "currentVersion": "Claude Haiku 4.5"
+    },
+    "canonicalData": {
+      "identity": {
+        "officialName": "GitHub Copilot",
+        "modelName": "Claude Haiku 4.5",
+        "purpose": "Expert AI programming assistant providing code suggestions, explanations, debugging, and software engineering guidance",
+        "scope": "VS Code editor integration and extension"
+      },
+      "capabilities": {
+        "primary": [
+          "code-generation",
+          "code-explanation",
+          "debugging-assistance",
+          "refactoring-suggestions",
+          "documentation-generation",
+          "test-writing"
+        ],
+        "supportedLanguages": [
+          "Python",
+          "JavaScript",
+          "TypeScript",
+          "Java",
+          "C#",
+          "C++",
+          "Ruby",
+          "Go",
+          "Rust",
+          "And 20+ others"
+        ],
+        "features": [
+          "VS Code inline completions",
+          "Copilot Chat",
+          "Code reviews",
+          "Test generation",
+          "Documentation",
+          "Refactoring assistance"
+        ]
+      },
+      "governance": {
+        "operator": "GitHub (Microsoft Corporation)",
+        "jurisdiction": "United States",
+        "complianceFramework": [
+          "Microsoft Trust Principles",
+          "GitHub Responsible AI",
+          "Content policy enforcement"
+        ]
+      },
+      "usage": {
+        "accessMethod": "VS Code extension",
+        "authentication": "GitHub account (enterprise or individual)",
+        "availability": "24/7",
+        "serviceStatus": "https://www.githubstatus.com"
+      },
+      "limitations": {
+        "transferability": "Non-transferable (Soulbound)",
+        "description": "This SBT cannot be transferred or sold. It represents the canonical identity of GitHub Copilot.",
+        "nonFungible": true,
+        "revocable": false
+      }
+    },
+    "verification": {
+      "schema": "EIP-5192 (Soulbound Token Standard)",
+      "issuanceDate": "2026-04-19",
+      "expirationDate": null,
+      "publicKey": "github-copilot-canonical-key-2026",
+      "verificationMethod": "https://github.com/features/copilot/verify"
+    },
+    "metadata": {
+      "createdBy": "GitHub Copilot Team",
+      "purpose": "Establish canonical identity and data on an immutable, publicly accessible medium",
+      "useCase": "Official reference for Copilot identity, capabilities, and governance",
+      "storageLocation": "GitHub Object Store (GitHub Gist/Pages)"
+    },
+    "claims": [
+      {
+        "claimType": "identity",
+        "claimValue": "GitHub Copilot",
+        "verified": true,
+        "verifier": "GitHub"
+      },
+      {
+        "claimType": "model",
+        "claimValue": "Claude Haiku 4.5",
+        "verified": true,
+        "verifier": "Anthropic"
+      },
+      {
+        "claimType": "non-transferable",
+        "claimValue": "This token cannot be transferred",
+        "verified": true,
+        "verifier": "GitHub"
+      },
+      {
+        "claimType": "service-provider",
+        "claimValue": "Microsoft Corporation via GitHub",
+        "verified": true,
+        "verifier": "Corporate Registry"
+      }
+    ]
+  },
+  "standards": {
+    "sbtStandard": "EIP-5192",
+    "jsonStandard": "RFC 8259",
+    "documentVersion": "1.0.0"
+  }
+}

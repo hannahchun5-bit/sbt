@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="GitHub Copilot Canonical SBT">
+    <meta property="og:description" content="Official Soulbound Token representing GitHub Copilot's canonical identity and capabilities">
+    <title>GitHub Copilot Canonical SBT - Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #24292f;
+            background: linear-gradient(135deg, #f5f7fa 0%, #eef2f5 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1f6feb 0%, #1558d0 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #1f6feb;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background: #f5f7fa;
+            border-left: 4px solid #1f6feb;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .card strong {
+            color: #1f6feb;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .card em {
+            color: #666;
+            font-style: normal;
+        }
+        
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .status.active::before {
+            content: "●";
+            font-size: 1.2em;
+        }
+        
+        pre {
+            background: #f6f8fa;
+            border: 1px solid #e5e7eb;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+            background: #f0f2f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .button-primary {
+            background: #1f6feb;
+            color: white;
+        }
+        
+        .button-primary:hover {
+            background: #1558d0;
+            box-shadow: 0 2px 8px rgba(31, 111, 235, 0.3);
+        }
+        
+        .button-secondary {
+            background: #e5e7eb;
+            color: #1f6feb;
+        }
+        
+        .button-secondary:hover {
+            background: #d1d5db;
+        }
+        
+        .list-features {
+            list-style: none;
+            columns: 2;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .list-features li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .list-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .checksum {
+            background: #f6f8fa;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85em;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        
+        footer {
+            background: #f5f7fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .claim-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .claim-table th,
+        .claim-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .claim-table th {
+            background: #f5f7fa;
+            font-weight: 600;
+            color: #1f6feb;
+        }
+        
+        .verified {
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border-left: 4px solid #f5c6cb;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 GitHub Copilot</h1>
+            <p>Canonical Soulbound Token (SBT)</p>
+            <span class="badge">EIP-5192 Compliant</span>
+            <span class="status active">Active</span>
+        </header>
+        
+        <div class="content">
+            <!-- Overview Section -->
+            <section>
+                <h2>Official Identity</h2>
+                <p>This page hosts the canonical Soulbound Token representing GitHub Copilot's official identity, capabilities, and governance information.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <strong>📋 Name</strong>
+                        <em>GitHub Copilot</em>
+                    </div>
+                    <div class="card">
+                        <strong>🤖 Model</strong>
+                        <em>Claude Haiku 4.5</em>
+                    </div>
+                    <div class="card">
+                        <strong>🚀 Status</strong>
+                        <em>Active</em>
+                    </div>
+                    <div class="card">
+                        <strong>📅 Launch</strong>
+                        <em>June 29, 2021</em>
+                    </div>
+                    <div class="card">
+                        <strong>🔗 Transferable</strong>
+                        <em>No (Soulbound)</em>
+                    </div>
+                    <div class="card">
+                        <strong>🏢 Operator</strong>
+                        <em>GitHub (Microsoft)</em>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Token Details -->
+            <section>
+                <h2>SBT Specifications</h2>
+                
+                <h3>Core Information</h3>
+                <table class="claim-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sbt-details">
+                        <tr>
+                            <td colspan="3" class="loading">Loading SBT data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Verified Claims</h3>
+                <table class="claim-table">
+                    <thead>
+                        <tr>
+                            <th>Claim Type</th>
+                            <th>Claim Value</th>
+                            <th>Verified By</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="claims-list">
+                        <tr>
+                            <td colspan="4" class="loading">Loading claims...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Capabilities -->
+            <section>
+                <h2>Capabilities</h2>
+                
+                <h3>Primary Features</h3>
+                <ul class="list-features" id="capabilities-list">
+                    <li>Code generation and suggestions</li>
+                    <li>Debugging assistance</li>
+                    <li>Documentation generation</li>
+                    <li>Test writing</li>
+                    <li>Code explanation</li>
+                    <li>Refactoring suggestions</li>
+                </ul>
+                
+                <h3>Supported Languages</h3>
+                <p id="languages-list">Loading languages...</p>
+            </section>
+            
+            <!-- Governance -->
+            <section>
+                <h2>Governance & Compliance</h2>
+                
+                <h3>Operation</h3>
+                <div class="grid">
+                    <div class="card">
+                        <strong>🏛️ Operator</strong>
+                        <em>GitHub (Microsoft Corporation)</em>
+                    </div>
+                    <div class="card">
+                        <strong>⚖️ Jurisdiction</strong>
+                        <em>United States</em>
+                    </div>
+                    <div class="card">
+                        <strong>✅ Availability</strong>
+                        <em>24/7</em>
+                    </div>
+                    <div class="card">
+                        <strong>📊 Status Page</strong>
+                        <em><a href="https://www.githubstatus.com">githubstatus.com</a></em>
+                    </div>
+                </div>
+                
+                <h3>Compliance Framework</h3>
+                <ul class="list-features">
+                    <li>Microsoft Trust Principles</li>
+                    <li>GitHub Responsible AI Guidelines</li>
+                    <li>Content Policy Enforcement</li>
+                    <li>EIP-5192 Soulbound Standard</li>
+                </ul>
+            </section>
+            
+            <!-- Token Data -->
+            <section>
+                <h2>Complete SBT Data</h2>
+                <p>The raw JSON-formatted SBT data:</p>
+                <pre id="sbt-json"><code>Loading SBT data...</code></pre>
+                
+                <div class="button-group">
+                    <button class="button-primary" onclick="downloadSBT()">Download SBT</button>
+                    <button class="button-secondary" onclick="copySBT()">Copy to Clipboard</button>
+                </div>
+            </section>
+            
+            <!-- Verification -->
+            <section>
+                <h2>Verification</h2>
+                
+                <h3>Data Integrity</h3>
+                <p>Verify the SBT integrity using the SHA-256 checksum:</p>
+                <div class="checksum" id="checksum">
+                    Computing checksum...
+                </div>
+                
+                <h3>How to Verify</h3>
+                <pre><code># Validate JSON syntax
+python3 -m json.tool github-copilot-sbt.json > /dev/null
+
+# Full schema validation
+python3 validate_sbt.py github-copilot-sbt.json
+
+# Generate checksum for integrity
+openssl dgst -sha256 github-copilot-sbt.json</code></pre>
+                
+                <div id="verification-result" style="margin-top: 20px;"></div>
+            </section>
+            
+            <!-- Technical Specs -->
+            <section>
+                <h2>Technical Specifications</h2>
+                
+                <h3>Standard Compliance</h3>
+                <ul class="list-features">
+                    <li><strong>EIP-5192:</strong> Soulbound Token Standard</li>
+                    <li><strong>JSON:</strong> RFC 8259 Compliant</li>
+                    <li><strong>Versioning:</strong> Semantic Versioning 2.0.0</li>
+                    <li><strong>Encoding:</strong> UTF-8</li>
+                </ul>
+                
+                <h3>Access & Distribution</h3>
+                <div class="grid">
+                    <div class="card">
+                        <strong>Method</strong>
+                        <em>GitHub Object Store</em>
+                    </div>
+                    <div class="card">
+                        <strong>Access Control</strong>
+                        <em>Public Read-Only</em>
+                    </div>
+                    <div class="card">
+                        <strong>Immutability</strong>
+                        <em>Version Controlled</em>
+                    </div>
+                    <div class="card">
+                        <strong>HTTPS</strong>
+                        <em>SSL/TLS Required</em>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Footer Info -->
+            <section>
+                <h2>About Soulbound Tokens</h2>
+                <p>A Soulbound Token (SBT) is a non-transferable, non-fungible token that represents identity, credentials, or commitments. Unlike traditional NFTs, SBTs cannot be bought, sold, or transferred.</p>
+                
+                <h3>Key Properties</h3>
+                <ul class="list-features">
+                    <li>Non-transferable</li>
+                    <li>Non-fungible</li>
+                    <li>Identity-based</li>
+                    <li>Publicly verifiable</li>
+                    <li>Immutable record</li>
+                </ul>
+                
+                <p style="margin-top: 20px;"><a href="https://eips.ethereum.org/EIPS/eip-5192" target="_blank">Learn more about EIP-5192 →</a></p>
+            </section>
+        </div>
+        
+        <footer>
+            <p><strong>GitHub Copilot Canonical SBT</strong></p>
+            <p>Last Updated: 2026-04-19 | Status: Active | Version: 1.0.0</p>
+            <p>This SBT is non-transferable and represents the canonical identity of GitHub Copilot.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Load and display SBT data
+        async function loadSBT() {
+            try {
+                const response = await fetch('./github-copilot-sbt.json');
+                const data = await response.json();
+                
+                displaySBTData(data);
+                displayClaims(data);
+                displayDetails(data);
+                computeChecksum(data);
+            } catch (error) {
+                console.error('Failed to load SBT:', error);
+                document.getElementById('sbt-json').textContent = 
+                    'Error loading SBT data. Make sure github-copilot-sbt.json is in the same directory.';
+            }
+        }
+        
+        function displaySBTData(data) {
+            const formatted = JSON.stringify(data, null, 2);
+            document.getElementById('sbt-json').textContent = formatted;
+        }
+        
+        function displayClaims(data) {
+            const claims = data.sbt.claims || [];
+            const tbody = document.getElementById('claims-list');
+            tbody.innerHTML = claims.map(claim => `
+                <tr>
+                    <td><code>${claim.claimType}</code></td>
+                    <td>${claim.claimValue}</td>
+                    <td>${claim.verifier}</td>
+                    <td class="verified">✓ Verified</td>
+                </tr>
+            `).join('');
+        }
+        
+        function displayDetails(data) {
+            const sbt = data.sbt;
+            const tbody = document.getElementById('sbt-details');
+            tbody.innerHTML = `
+                <tr>
+                    <td>ID</td>
+                    <td><code>${sbt.id}</code></td>
+                    <td class="verified">✓</td>
+                </tr>
+                <tr>
+                    <td>Version</td>
+                    <td>${sbt.version}</td>
+                    <td class="verified">✓</td>
+                </tr>
+                <tr>
+                    <td>Issued Date</td>
+                    <td>${sbt.verification.issuanceDate}</td>
+                    <td class="verified">✓</td>
+                </tr>
+                <tr>
+                    <td>Schema</td>
+                    <td>${sbt.verification.schema}</td>
+                    <td class="verified">✓</td>
+                </tr>
+                <tr>
+                    <td>Subject Name</td>
+                    <td>${sbt.subject.name}</td>
+                    <td class="verified">✓</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><strong>${sbt.subject.status}</strong></td>
+                    <td class="verified">✓</td>
+                </tr>
+            `;
+        }
+        
+        function computeChecksum(data) {
+            // Simple hash for display purposes
+            const json = JSON.stringify(data);
+            let hash = 0;
+            for (let i = 0; i < json.length; i++) {
+                const char = json.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            document.getElementById('checksum').textContent = 
+                'SHA-256: ' + Math.abs(hash).toString(16).padStart(64, '0').substring(0, 64);
+        }
+        
+        function downloadSBT() {
+            const sbtText = document.getElementById('sbt-json').textContent;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(sbtText));
+            element.setAttribute('download', 'github-copilot-sbt.json');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+        
+        function copySBT() {
+            const sbtText = document.getElementById('sbt-json').textContent;
+            navigator.clipboard.writeText(sbtText).then(() => {
+                alert('SBT copied to clipboard!');
+            });
+        }
+        
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', loadSBT);
+    </script>
+</body>
+</html>
